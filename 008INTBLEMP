@@ -1,0 +1,5 @@
+INSERT INTO EMPLOYEE                                                    
+(EMPNO,FIRSTNME,MIDINIT,LASTNAME,WORKDEPT,PHONENO,HIREDATE,JOB,EDLEVEL, 
+ SEX,BIRTHDATE,SALARY,BONUS,COMM)                                       
+VALUES('0548C6','UTTAM','P','PANASALA','CIC','7834','2015-12-17',       
+ 'CICS',8,'M','1995-05-19',2300000.00,2300000.00,1100000.00);           
