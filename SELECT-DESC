@@ -1,0 +1,8 @@
+SELECT *                      
+FROM SYSIBM.SYSTABLES         
+WHERE NAME = 'DEPT' AND       
+      CREATOR = 'TRNG130';    
+SELECT *                      
+FROM SYSIBM.SYSCOLUMNS        
+WHERE TBNAME = 'DEPT' AND     
+      TBCREATOR = 'TRNG130';  
