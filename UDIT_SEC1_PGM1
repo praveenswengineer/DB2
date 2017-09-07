@@ -1,0 +1,42 @@
+       IDENTIFICATION DIVISION.                                 
+       PROGRAM-ID.      SEC1PGM1.                               
+       DATA DIVISION.                                           
+       WORKING-STORAGE SECTION.                                 
+           EXEC SQL                                             
+             INCLUDE SQLCA                                      
+           END-EXEC.                                            
+           EXEC SQL                                             
+             INCLUDE EMPLOYEE                                   
+           END-EXEC.                                            
+       77 WS-SQLCODE PIC -9(9).                                 
+       PROCEDURE DIVISION.                                      
+       000-MAIN-PARA.                                           
+           PERFORM 100-SQL-PARA                                 
+           PERFORM 200-EVALUATE-PARA                            
+           STOP RUN.                                            
+      100-SQL-PARA.                                
+          MOVE 'M' TO SEX                          
+          EXEC SQL                                 
+             SELECT EMPNO,                         
+                   LASTNAME,                       
+                   FIRSTNME,                       
+                   BITHDATE,                       
+                   SALARY                          
+             INTO  :EMPNO,                         
+                   :LASTNAME,                      
+                   :FIRSTNME,                      
+                   :BITHDATE,                      
+                   :SALARY                         
+            FROM TRNG150.EMPLOYEE                  
+            WHERE SEX = :SEX                       
+          END-EXEC.                                
+      200-EVALUATE-PARA.                                        
+          MOVE SQLCODE TO WS-SQLCODE                            
+          EVALUATE SQLCODE                                      
+             WHEN 0                                             
+                DISPLAY LASTNAME FIRSTNME BITHDATE SALARY       
+             WHEN 100                                           
+                DISPLAY "NO ROWS FOUND" WS-SQLCODE              
+             WHEN OTHER                                         
+                DISPLAY "ERROR" WS-SQLCODE                      
+             END-EVALUATE.                                      
